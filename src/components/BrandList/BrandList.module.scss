@@ -1,0 +1,12 @@
+.container {
+  background-color: black;
+  display: flex;
+}
+
+.wrapBrandList {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 44px 0;
+}

@@ -1,0 +1,19 @@
+.wrap {
+
+  .wrapBreadcrumbs {
+    display: flex;
+    gap: 12px;
+    padding: 24px 0;
+
+    .itemBreadcrumbs {
+      list-style: none;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.6);
+
+      .iconRight {
+        margin-left: 4px;
+      }
+    }
+  }
+}

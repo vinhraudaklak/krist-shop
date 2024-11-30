@@ -1,0 +1,36 @@
+.headerTop {
+	width: 100%;
+	padding: 9px 0;
+	background-color: black;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	// position: fixed;
+	// top: 0;
+	// left: 0;
+	// z-index: 100;
+
+	.wrap {
+		display: flex;
+		justify-content: center;
+		position: relative;
+
+		a,
+		p {
+			font-weight: 500;
+			color: white;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: normal;
+		}
+
+		.iconClose {
+			font-size: 14px;
+			position: absolute;
+			right: 0;
+			padding: 0 4px;
+		}
+	}
+}

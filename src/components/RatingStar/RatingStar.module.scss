@@ -1,0 +1,20 @@
+.productRating {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+
+		.productRatingStar {
+      margin-right: 13px;
+      color: #FFC633;
+			display: flex;
+      gap: 3px;
+		}
+
+		.productRatingTotal {
+      font-weight: 400;
+
+      span {
+       color: rgba(0, 0, 0, 0.60);
+      }
+		}
+}

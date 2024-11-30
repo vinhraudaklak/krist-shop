@@ -1,0 +1,55 @@
+.wrapStyles {
+	border-radius: 40px;
+	background-color: #f0f0f0;
+
+	.wrapStylesTitle {
+		padding-top: 70px;
+		font-size: 48px;
+		font-weight: 700;
+		text-align: center;
+		font-family: $integralCF;
+	}
+
+	.wrapSelectStyles {
+		font-size: 36px;
+    font-weight: 700;
+		gap: 20px;
+		display: grid;
+		grid-template-columns: repeat(10, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		padding: 54px 54px;
+
+		.styleCasual,
+		.styleFormal,
+		.styleParty,
+		.styleGym {
+      height: 289px;
+      border-radius: 32px;
+      overflow: hidden;
+			position: relative;
+      display: block;
+      
+			.styleTitle {
+				position: absolute;
+				top: 32px;
+				left: 38px;
+			}
+      img {
+        width: 100%;
+      }
+		}
+
+		.styleCasual {
+			grid-area: 1 / 1 / 2 / 5;
+		}
+		.styleFormal {
+			grid-area: 1 / 5 / 2 / 11;
+		}
+		.styleParty {
+			grid-area: 2 / 1 / 3 / 7;
+		}
+		.styleGym {
+			grid-area: 2 / 7 / 3 / 11;
+		}
+	}
+}

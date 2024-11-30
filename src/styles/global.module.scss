@@ -1,0 +1,30 @@
+@import url(../assets/fonts/IntegralCF/integralCF.css);
+@import url(../assets/fonts/satoshi/satoshi.css);
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: $satoshiMedium;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+img {
+	max-width: 100%;
+}
+
+:global(.container) {
+	width: 1240px;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+:global(.containerFullWidth) {
+	width: 100%;
+}
+
+
+

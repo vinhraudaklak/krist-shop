@@ -1,0 +1,66 @@
+$slider-height: 6px;
+$thumb-size: 18px;
+
+.rangeSlide {
+	position: relative;
+	height: $slider-height;
+	margin: 24px 0;
+
+	.slide {
+		position: absolute;
+		top: 0;
+		height: $slider-height;
+		background: #ccc;
+		left: 9px;
+		right: 9px;
+	}
+
+	.line {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: $slider-height;
+		background-color: black;
+	}
+
+	.thumb {
+		position: absolute;
+		z-index: 2;
+		border: 1px solid black;
+		background-color: black;
+		border-radius: 50%;
+		outline: none;
+		top: -($thumb-size / 2 - $slider-height / 2);
+		height: $thumb-size;
+		width: $thumb-size;
+		margin-left: -($thumb-size / 2);
+	}
+
+	input {
+		-webkit-appearance: none;
+		appearance: none;
+		position: absolute;
+		pointer-events: none;
+		z-index: 3;
+		height: $slider-height;
+		top: 0;
+		width: 100%;
+		opacity: 0;
+		margin: 0;
+
+		&::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			pointer-events: all;
+			border-radius: 50%;
+			cursor: pointer;
+			width: $thumb-size;
+			height: $thumb-size;
+		}
+	}
+}
+
+.priceRanges {
+	font-size: 16px;
+}

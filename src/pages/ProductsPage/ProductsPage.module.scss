@@ -1,0 +1,120 @@
+.productPage {
+	display: flex;
+	justify-content: space-between;
+	gap: 21px;
+	padding-bottom: 80px;
+
+	.boxFilters {
+		flex: 3;
+	}
+
+	.boxProducts {
+		flex: 9;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.boxProductsTop {
+			display: flex;
+			justify-content: space-between;
+			align-items: end;
+
+			.topTitle {
+				font-size: 32px;
+				font-weight: 700;
+			}
+
+			.topSort {
+				display: flex;
+				justify-content: space-between;
+				align-items: end;
+				gap: 12px;
+
+				.topSortLeft {
+					font-size: 16px;
+					font-weight: 400;
+					color: rgba(0, 0, 0, 0.6);
+				}
+
+				.topSortRight {
+					span {
+						font-size: 16px;
+						font-weight: 400;
+						color: rgba(0, 0, 0, 0.6);
+					}
+
+					select {
+						font-size: 17px;
+						font-weight: 500;
+						border-style: none;
+						outline: none;
+					}
+				}
+			}
+		}
+
+		.wrapBoxProductsCard {
+			flex: 1;
+			.boxProductsCard {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 32px 20px;
+				margin-top: 18px;
+			}
+		}
+
+		.boxProductsBottom {
+			padding-top: 32px;
+
+			.wrapPagination {
+				padding-top: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+
+				.paginationArrow {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+					padding: 8px 14px;
+					border-radius: 8px;
+					border: 1px solid rgba(0, 0, 0, 0.1);
+					cursor: pointer;
+
+					p {
+						font-size: 14px;
+						font-weight: 500;
+					}
+
+					.iconArrow {
+						font-size: 18px;
+					}
+				}
+
+				.wrapPageNumbers {
+					display: flex;
+
+					.boxNumber {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						width: 40px;
+						height: 40px;
+						border-radius: 8px;
+						font-size: 14px;
+						font-weight: 500;
+						cursor: pointer;
+					}
+
+					.active {
+						background-color: red !important;
+					}
+
+					.backgroundNumber {
+						background: rgba(0, 0, 0, 0.06);
+					}
+				}
+			}
+		}
+	}
+}

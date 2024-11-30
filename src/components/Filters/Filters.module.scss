@@ -1,0 +1,105 @@
+.wrapFilters {
+	padding: 20px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 20px;
+
+	.boxTitle {
+		.titleFilter {
+			font-size: 20px;
+			font-weight: 700;
+		}
+	}
+
+	.boxFilterCategory {
+		li {
+			list-style: none;
+			font-size: 16px;
+			font-weight: 400;
+			color: rgba(0, 0, 0, 0.6);
+
+			& + li {
+				margin-top: 20px;
+			}
+
+			&.catActive {
+				font-weight: bold;
+				color: red;
+			}
+		}
+	}
+
+	.boxFilterPrices {
+		.wrapFilterPrices {
+			display: flex;
+			margin-top: 16px;
+			div {
+				font-size: 16px;
+				font-weight: 400;
+				color: rgba(0, 0, 0, 0.6);
+				min-width: 140px;
+			}
+
+			.inputRange {
+			}
+		}
+
+		.filterPriceRange {
+			margin-top: 16px;
+			font-size: 16px;
+			font-weight: 400;
+		}
+	}
+
+	.boxFilterColors {
+		margin-top: 20px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		.colorItem {
+			display: flex;
+			width: 37px;
+			height: 37px;
+			border-radius: 50%;
+			border: 1px solid rgba(0, 0, 0, 0.2);
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.8;
+				border: 2px solid black;
+			}
+		}
+	}
+
+	.boxFilterSizes {
+		margin-top: 20px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+
+		.sizeItem {
+			padding: 10px 32px;
+			background-color: rgba(240, 240, 240, 1);
+			border-radius: 62px;
+			font-size: 14px;
+			font-weight: 400;
+			color: rgba(0, 0, 0, 0.6);
+
+			&:hover {
+				opacity: 0.9;
+				background: #000;
+				color: rgba(255, 255, 255, 1);
+			}
+		}
+	}
+
+	.btnApplyFilter {
+		border: none;
+		width: 100%;
+		padding: 16px 54px;
+		border-radius: 62px;
+		background-color: rgba(0, 0, 0, 1);
+		color: rgba(255, 255, 255, 1);
+		font-size: 14px;
+		font-weight: 500;
+	}
+}

@@ -1,0 +1,255 @@
+.wrapDetail {
+	display: flex;
+	justify-content: space-between;
+	gap: 40px;
+
+	.wrapImg {
+		flex: 1;
+		display: flex;
+		gap: 14px;
+
+		.wrapImagesDetail {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 14px;
+		}
+
+		.impImageMain {
+			flex: 3;
+			display: flex;
+			align-items: center;
+
+			img {
+				width: 100%;
+			}
+		}
+	}
+
+	.wrapDesc {
+		flex: 1;
+
+		.productTitle {
+			font-size: 40px;
+			font-weight: 700;
+			font-family: $integralCF;
+		}
+
+		.productWrapPrice {
+			display: flex;
+			align-items: center;
+			justify-content: start;
+			font-size: 32px;
+			font-weight: 700;
+			gap: 12px;
+			margin-top: 6px;
+
+			.productPrice {
+				color: rgba(0, 0, 0, 0.4);
+				text-decoration: line-through;
+			}
+
+			.productPercentDiscount {
+				font-size: 16px;
+				font-weight: 500;
+				color: #f33;
+				background: rgba(255, 51, 51, 0.1);
+				border-radius: 62px;
+				padding: 6px 14px;
+			}
+		}
+
+		.productDesc {
+			font-size: 16px;
+			font-weight: 400;
+			color: rgba(0, 0, 0, 0.6);
+			line-height: 22px;
+			margin-top: 16px;
+		}
+
+		.productSelectColor {
+			.selectColorTitle {
+				font-size: 16px;
+				font-weight: 400;
+				color: rgba(0, 0, 0, 0.6);
+			}
+
+			.wrapColor {
+				margin-top: 16px;
+				display: flex;
+				gap: 16px;
+
+				.colorItem {
+					height: 37px;
+					width: 37px;
+					border-radius: 50%;
+					display: flex;
+
+					&:hover {
+						opacity: 0.6;
+					}
+
+					img {
+						margin: auto;
+					}
+				}
+			}
+		}
+
+		.productSelectSize {
+			.selectSizeTitle {
+				font-size: 16px;
+				font-weight: 400;
+				color: rgba(0, 0, 0, 0.6);
+			}
+
+			.wrapSize {
+				margin-top: 16px;
+				display: flex;
+				gap: 12px;
+
+				.sizeItem {
+					padding: 12px 24px;
+					border-radius: 62px;
+					background-color: #f0f0f0;
+					font-size: 16px;
+					color: rgba(0, 0, 0, 0.6);
+
+					&:hover {
+						opacity: 0.6;
+					}
+				}
+
+				.active {
+					background-color: rgba(0, 0, 0, 1) !important;
+					color: white !important;
+				}
+			}
+		}
+
+		.productWrapAdd {
+			display: flex;
+			justify-content: space-between;
+			gap: 20px;
+
+			.productQuantity {
+				flex: 1.8;
+				padding: 16px 20px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				border-radius: 62px;
+				background-color: #f0f0f0;
+
+				span {
+					font-size: 18px;
+					font-weight: 500;
+				}
+			}
+
+			.btnAddCart {
+				flex: 4;
+				padding: 16px 54px;
+				border-radius: 62px;
+				background-color: rgba(0, 0, 0, 1);
+				border-style: none;
+				font-size: 16px;
+				color: white;
+			}
+		}
+	}
+}
+
+.wrapperDetailsRatings {
+	margin-top: 80px;
+
+	.wrapLineTopic {
+		display: flex;
+		justify-content: space-around;
+
+		.topicItem {
+			flex: 1;
+			text-align: center;
+			padding-bottom: 24px;
+			font-size: 20px;
+			font-weight: 400;
+			color: rgba(0, 0, 0, 0.6);
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+			&.active {
+				color: black;
+				border-bottom: 2px solid black;
+			}
+		}
+	}
+
+	.containerRatings {
+		.wrapTopRatings {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 14px 0;
+			.allReviews {
+				font-size: 24px;
+				font-weight: 700;
+
+				span {
+					margin-left: 8px;
+					font-size: 16px;
+					font-weight: 400;
+					color: rgba(0, 0, 0, 0.6);
+				}
+			}
+
+			.btnWriteRating {
+				border-radius: 62px;
+				background-color: black;
+				color: white;
+				padding: 14px 32px;
+				font-size: 16px;
+				font-weight: 500;
+				border: none;
+			}
+		}
+
+		.wrapBottomRating {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 20px;
+			
+			.wrapComment {
+				min-width: 400px;
+				height: 240px;
+				padding: 28px 32px;
+				border: 1px solid rgba(0, 0, 0, 0.10);
+				border-radius: 32px;
+				display: flex;
+				flex-direction: column;
+	
+				.starRating {
+					display: flex;
+					gap: 3px;
+					font-size: 16px;
+					color: rgba(255, 198, 51, 1);
+				}
+				.userName {
+					font-size: 20px;
+					font-weight: 700;
+					margin-top: 15px;
+	
+					.iconCheck {
+						margin-left: 4px;
+						color: rgba(1, 171, 49, 1);
+					}
+				}
+				.userComment {
+					font-size: 16px;
+					font-weight: 400;
+					color: rgba(0, 0, 0, 0.6);
+					margin-top: 12px;
+				}
+			}
+		}
+	}
+}

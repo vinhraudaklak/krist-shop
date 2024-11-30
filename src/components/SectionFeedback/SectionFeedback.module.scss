@@ -1,0 +1,63 @@
+.wrapper {
+  padding: 80px 0;
+	.wrapTitleArrow {
+		display: flex;
+		justify-content: space-between;
+		align-items: end;
+		h1 {
+			font-size: 48px;
+			font-weight: 700;
+			font-family: $integralCF;
+		}
+
+		.wrapIconArrow {
+			font-size: 18px;
+			display: flex;
+
+			.faArrowLeft {
+				margin-right: 16px;
+			}
+		}
+	}
+
+	.wrapComments {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    overflow: hidden;
+    margin-top: 40px;
+  
+		.wrapComment {
+      min-width: 400px;
+      height: 240px;
+      padding: 28px 32px;
+      border: 1px solid rgba(0, 0, 0, 0.10);
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+
+			.starRating {
+        display: flex;
+        gap: 3px;
+        font-size: 16px;
+        color: rgba(255, 198, 51, 1);
+			}
+			.userName {
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 15px;
+
+        .iconCheck {
+          margin-left: 4px;
+          color: rgba(1, 171, 49, 1);
+        }
+			}
+			.userComment {
+        font-size: 16px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.6);
+        margin-top: 12px;
+			}
+		}
+	}
+}

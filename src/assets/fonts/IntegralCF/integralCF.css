@@ -1,0 +1,156 @@
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF';
+    src: url('FONTSPRINGDEMO-IntegralCFHeavyRegular.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFHeavyRegular.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFHeavyRegular.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFHeavyRegular.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFHeavyRegular.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFHeavyRegular.svg#FONTSPRINGDEMO-IntegralCFHeavyRegular') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF';
+    src: url('FONTSPRINGDEMO-IntegralCFMediumRegular.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFMediumRegular.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFMediumRegular.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFMediumRegular.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFMediumRegular.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFMediumRegular.svg#FONTSPRINGDEMO-IntegralCFMediumRegular') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF';
+    src: url('FONTSPRINGDEMO-IntegralCFBoldItalic.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFBoldItalic.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFBoldItalic.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFBoldItalic.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFBoldItalic.svg#FONTSPRINGDEMO-IntegralCFBoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF';
+    src: url('FONTSPRINGDEMO-IntegralCFHeavyItalic.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFHeavyItalic.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFHeavyItalic.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFHeavyItalic.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFHeavyItalic.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFHeavyItalic.svg#FONTSPRINGDEMO-IntegralCFHeavyItalic') format('svg');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF Extra';
+    src: url('FONTSPRINGDEMO-IntegralCFExtraBoldItalic.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFExtraBoldItalic.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFExtraBoldItalic.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFExtraBoldItalic.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFExtraBoldItalic.svg#FONTSPRINGDEMO-IntegralCFExtraBoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF Demi';
+    src: url('FONTSPRINGDEMO-IntegralCFDemiBoldRegular.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFDemiBoldRegular.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFDemiBoldRegular.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFDemiBoldRegular.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFDemiBoldRegular.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFDemiBoldRegular.svg#FONTSPRINGDEMO-IntegralCFDemiBoldRegular') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF Demi';
+    src: url('FONTSPRINGDEMO-IntegralCFDemiBoldItalic.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFDemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFDemiBoldItalic.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFDemiBoldItalic.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFDemiBoldItalic.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFDemiBoldItalic.svg#FONTSPRINGDEMO-IntegralCFDemiBoldItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF';
+    src: url('FONTSPRINGDEMO-IntegralCFBoldRegular.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFBoldRegular.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFBoldRegular.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFBoldRegular.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFBoldRegular.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFBoldRegular.svg#FONTSPRINGDEMO-IntegralCFBoldRegular') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF Extra';
+    src: url('FONTSPRINGDEMO-IntegralCFExtraBoldRegular.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFExtraBoldRegular.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFExtraBoldRegular.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFExtraBoldRegular.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFExtraBoldRegular.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFExtraBoldRegular.svg#FONTSPRINGDEMO-IntegralCFExtraBoldRegular') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF';
+    src: url('FONTSPRINGDEMO-IntegralCFRegular.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFRegular.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFRegular.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFRegular.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFRegular.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFRegular.svg#FONTSPRINGDEMO-IntegralCFRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF';
+    src: url('FONTSPRINGDEMO-IntegralCFItalic.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFItalic.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFItalic.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFItalic.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFItalic.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFItalic.svg#FONTSPRINGDEMO-IntegralCFItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FONTSPRING DEMO - Integral CF';
+    src: url('FONTSPRINGDEMO-IntegralCFMediumItalic.eot');
+    src: url('FONTSPRINGDEMO-IntegralCFMediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('FONTSPRINGDEMO-IntegralCFMediumItalic.woff2') format('woff2'),
+        url('FONTSPRINGDEMO-IntegralCFMediumItalic.woff') format('woff'),
+        url('FONTSPRINGDEMO-IntegralCFMediumItalic.ttf') format('truetype'),
+        url('FONTSPRINGDEMO-IntegralCFMediumItalic.svg#FONTSPRINGDEMO-IntegralCFMediumItalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
