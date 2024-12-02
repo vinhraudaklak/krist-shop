@@ -5,23 +5,24 @@ import { images } from "../../assets/images";
 import InputDoubleRange from "../InputDoubleRange/InputDoubleRange";
 import { LIST_COLORS, LIST_SIZES } from "../../const/const";
 
+// eslint-disable-next-line react/prop-types
 const Filters = ({ filters, setFilters, categories }) => {
 	// Handle change filter options
-	
+
 	const toggleFilter = useCallback((filterName, option) => {
 		setFilters((prev) => {
-			if (filterName !== 'prices') {
+			if (filterName !== "prices") {
 				return {
 					...prev,
 					[filterName]: prev[filterName].includes(option) // check xem category đã tồn tại trong filters chưa
 						? prev[filterName].filter((item) => item !== option) // nếu tồn tại thì lặp qua mảng filter.categories và loại bỏ category đã tồn tại trước đó
 						: [...prev[filterName], option], // nếu không tồn tại thì lấy lại categories đã thêm trước đó và thêm mới category hiện tại vào filters
-				}
+				};
 			} else {
-				return { 
+				return {
 					...prev,
 					[filterName]: option,
-				}
+				};
 			}
 		});
 	}, []);
@@ -59,9 +60,7 @@ const Filters = ({ filters, setFilters, categories }) => {
 			<div className={styles.boxTitle}>
 				<h3 className={styles.titleFilter}>Price</h3>
 			</div>
-			{/* <InputDoubleRange
-				toggleFilter={toggleFilter}
-			/> */}
+			<InputDoubleRange filters={filters} toggleFilter={toggleFilter} />
 
 			<SeparateMargin />
 			{/* filter color */}

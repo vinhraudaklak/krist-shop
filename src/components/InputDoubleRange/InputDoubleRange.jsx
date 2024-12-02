@@ -9,25 +9,42 @@ const InputDoubleRange = ({ toggleFilter }) => {
 		maxPrice: PRICE_RANGE.MAX_PRICE,
 	});
 
-	useEffect(() => {
-		toggleFilter('prices', `${priceRange.minPrice},${priceRange.maxPrice}`);
-	}, [priceRange])
-
 	// Hàm xử lý thay đổi giá trị
 	const handlePriceChange = (e) => {
-		const value = +e.target.value;
-		const sliderName = e.target.name;
+		const { value, name } = e.target;
 
-		setPriceRange((prevRange) => {
-			if (sliderName === "minPrice" && value < prevRange.maxPrice) {
-				return { ...prevRange, minPrice: value };
+		// setPriceRange((prevRange) => {
+		// 	if (name === "minPrice" && +value < prevRange.maxPrice) {
+		// 		return { ...prevRange, minPrice: +value };
+		// 	}
+		// 	if (name === "maxPrice" && +value > prevRange.minPrice) {
+		// 		return { ...prevRange, maxPrice: +value };
+		// 	}
+		// 	return prevRange; // Không thay đổi nếu không hợp lệ
+		// });
+
+		setPriceRange((prev) => {
+			const numValue = +value;
+			if (
+				(name === "minPrice" && numValue < prev.maxPrice) ||
+				(name === "maxPrice" && numValue > prev.minPrice)
+			) {
+				return { ...prev, [name]: numValue };
 			}
-			if (sliderName === "maxPrice" && value > prevRange.minPrice) {
-				return { ...prevRange, maxPrice: value };
-			}
-			return prevRange; // Không thay đổi nếu không hợp lệ
+			return prev;
 		});
 	};
+
+	useEffect(() => {
+		if (
+			priceRange.minPrice !== PRICE_RANGE.MIN_PRICE ||
+			priceRange.maxPrice !== PRICE_RANGE.MAX_PRICE
+		)
+			toggleFilter(
+				"prices",
+				`${priceRange.minPrice},${priceRange.maxPrice}`
+			);
+	}, [priceRange]);
 
 	return (
 		<>

@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { getCategories, getProducts } from "../../utils/callApi.js";
+import { PRICE_RANGE } from "../../const/const";
+import { useDebounce } from "use-lodash-debounce";
 
 const ProductsPage = () => {
 	const [loading, setLoading] = useState(false);
@@ -17,16 +19,17 @@ const ProductsPage = () => {
 
 	const [filters, setFilters] = useState({
 		categories: [],
-		prices: "",
+		prices: `${PRICE_RANGE.MIN_PRICE}, ${PRICE_RANGE.MAX_PRICE}`,
 		colors: [],
 		sizes: [],
 	});
-
 	const [pagination, setPagination] = useState({
 		totalPage: 0,
 		currentPage: 1,
 		perPage: 12,
 	});
+
+	const debouncedValue = useDebounce(filters, 100);
 
 	// Fetch categories
 	useEffect(() => {
@@ -68,7 +71,7 @@ const ProductsPage = () => {
 
 	useEffect(() => {
 		handleGetProducts();
-	}, [filters, pagination.currentPage, pagination.perPage]);
+	}, [debouncedValue, pagination.currentPage, pagination.perPage]);
 
 	// Handle pagination change
 	const handlePageChange = (newPage) => {
@@ -77,8 +80,6 @@ const ProductsPage = () => {
 			currentPage: newPage,
 		}));
 	};
-
-	console.log(pagination);
 
 	return (
 		<Layout>

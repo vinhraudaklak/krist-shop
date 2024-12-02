@@ -4,13 +4,14 @@ import { images } from "../../assets/images";
 import styles from "./DetailPage.module.scss";
 import RatingStar from "../../components/RatingStar/RatingStar";
 import SeparateMargin from "../../components/SeparateMargin/SeparateMargin";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faCircleCheck,
 	faStar,
 	faStarHalf,
 } from "@fortawesome/free-solid-svg-icons";
+import TruncateTextComponent from "../../components/TruncateTextComponent/TruncateTextComponent";
 
 const product = {
 	id: 1,
@@ -30,14 +31,14 @@ const informationComments = [
 		id: 1,
 		name: "Sarah M.",
 		comment:
-			'"I"m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought has exceeded my expectations.”',
+			'"I"m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought has quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought has quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought hasexceeded my expectations.”',
 		star: 5,
 	},
 	{
 		id: 2,
 		name: "Alex K.",
 		comment:
-			'"Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.”',
+			'"As a UI/UX enthusiast, I value simplicity and functionality. This t-shirt not only represents those principles but also feels great to wear. It"s evident that the designer poured their creativity into making this t-shirt stand out."',
 		star: 4.5,
 	},
 	{
@@ -51,12 +52,53 @@ const informationComments = [
 		id: 4,
 		name: "VinhNg.",
 		comment:
+			'"I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It"s become my favorite go-to shirt."',
+		star: 5,
+	},
+	{
+		id: 5,
+		name: "Sarah M.",
+		comment:
+			'"I"m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought has exceeded my expectations.”',
+		star: 5,
+	},
+	{
+		id: 6,
+		name: "Alex K.",
+		comment:
+			'"Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.”',
+		star: 4.5,
+	},
+	{
+		id: 7,
+		name: "James L.",
+		comment:
+			"As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
+		star: 8,
+	},
+	{
+		id: 9,
+		name: "VinhNg.",
+		comment:
 			'"I"m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought has exceeded my expectations.”',
 		star: 5,
 	},
 ];
 const DetailPage = () => {
 	const [showTopic, setShowTopic] = useState("ratings");
+	const commentRefs = useRef([]);
+
+	useEffect(() => {
+		informationComments.forEach((_, index) => {
+			const element = commentRefs.current[index];
+
+			if (element && element.scrollHeight > element.clientHeight) {
+				const btnViewMore =
+					element.parentNode.querySelector(".viewMore");
+				btnViewMore.style.display = "block";
+			}
+		});
+	}, []);
 
 	return (
 		<Layout>
@@ -201,7 +243,7 @@ const DetailPage = () => {
 								</button>
 							</div>
 							{/* BottomRatings */}
-							<div className={styles.wrapBottomRating}>
+							<div className={styles.wrapContainerRating}>
 								{informationComments.map(
 									(informationComment) => {
 										// check star int of float
@@ -223,50 +265,67 @@ const DetailPage = () => {
 												key={informationComment.id}
 												className={styles.wrapComment}
 											>
-												<div
-													className={
-														styles.starRating
-													}
-												>
-													{numberToArr.map(
-														(_, index) => {
-															return (
-																<FontAwesomeIcon
-																	key={index}
-																	icon={
-																		faStar
-																	}
-																/>
-															);
+												<div>
+													<div
+														className={
+															styles.starRating
 														}
-													)}
-
-													{!isInt && (
+													>
+														{numberToArr.map(
+															(_, index) => {
+																return (
+																	<FontAwesomeIcon
+																		key={index}
+																		icon={
+																			faStar
+																		}
+																	/>
+																);
+															}
+														)}
+	
+														{!isInt && (
+															<FontAwesomeIcon
+																icon={faStarHalf}
+															/>
+														)}
+													</div>
+													<div
+														className={styles.userName}
+													>
+														<span>
+															{
+																informationComment.name
+															}
+														</span>
 														<FontAwesomeIcon
-															icon={faStarHalf}
+															className={styles.icon}
+															icon={faCircleCheck}
 														/>
-													)}
+													</div>
+													<div>
+														<TruncateTextComponent
+															text={
+																informationComment.comment
+															}
+															maxLines={3}
+															classNameText={
+																styles.commentText
+															}
+															classNameBtnText={
+																styles.btnText
+															}
+														/>
+													</div>
 												</div>
-												<div
-													className={styles.userName}
-												>
-													<span>
-														{
-															informationComment.name
-														}
-													</span>
-													<FontAwesomeIcon
-														className={styles.icon}
-														icon={faCircleCheck}
-													/>
-												</div>
-												<div
+
+												<span
 													className={
-														styles.userComment
+														styles.timePosted
 													}
 												>
-													{informationComment.comment}
-												</div>
+													Posted on August 18, 2023
+												</span>
 											</div>
 										);
 									}
@@ -274,7 +333,9 @@ const DetailPage = () => {
 							</div>
 						</div>
 					) : (
-						<div>Rating Reviews</div>
+						<div className={styles.wrapDetailsProduct}>
+							<h1 className={styles.titleName}>Vertical Striped Shirt</h1>
+						</div>
 					)}
 				</div>
 			</div>
