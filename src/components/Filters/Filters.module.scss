@@ -4,26 +4,49 @@
 	border-radius: 20px;
 
 	.boxTitle {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
 		.titleFilter {
 			font-size: 20px;
 			font-weight: 700;
 		}
+
+		.iconFilter {
+			font-size: 20px;
+		}
 	}
 
-	.boxFilterCategory {
-		li {
-			list-style: none;
-			font-size: 16px;
-			font-weight: 400;
-			color: rgba(0, 0, 0, 0.6);
+	.containerFilterBrands {
+		.wrapBradsTop {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 10px;
 
-			& + li {
-				margin-top: 20px;
+			.titleFilterBrands {
+				font-size: 20px;
+				font-weight: 700;
 			}
 
-			&.catActive {
+			.iconArrow {
+				font-size: 18px;
+			}
+		}
+
+		.boxFilterCategory {
+			.category {
+				list-style: none;
+				font-size: 16px;
+				font-weight: 400;
+				padding: 10px 0;
+				color: rgba(0, 0, 0, 0.6);
+			}
+
+			.catActive {
 				font-weight: bold;
-				color: red;
+				color: rgba(0, 0, 0, 0.8);
 			}
 		}
 	}
@@ -92,14 +115,14 @@
 		}
 	}
 
-	.btnApplyFilter {
-		border: none;
-		width: 100%;
-		padding: 16px 54px;
-		border-radius: 62px;
-		background-color: rgba(0, 0, 0, 1);
-		color: rgba(255, 255, 255, 1);
-		font-size: 14px;
-		font-weight: 500;
-	}
+	// .btnApplyFilter {
+	// 	border: none;
+	// 	width: 100%;
+	// 	padding: 16px 54px;
+	// 	border-radius: 62px;
+	// 	background-color: rgba(0, 0, 0, 1);
+	// 	color: rgba(255, 255, 255, 1);
+	// 	font-size: 14px;
+	// 	font-weight: 500;
+	// }
 }

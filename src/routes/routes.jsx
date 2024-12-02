@@ -8,11 +8,11 @@ export const router = createBrowserRouter([
 		element: <Home />,
 	},
 	{
-		path: "/products",
+		path: "/Products",
 		element: <Products />,
 	},
 	{
-		path: "/products/:id",
+		path: "/Products/:id",
 		element: <DetailPage />,
 	},
 ]);

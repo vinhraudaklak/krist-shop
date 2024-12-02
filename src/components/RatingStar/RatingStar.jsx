@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./RatingStar.module.scss";
 import { faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
 
-const RatingStar = ({ star = 5, size = 14 }) => {
+const RatingStar = ({ star = 4.5, size = 14 }) => {
 	// Chuyển number thành array.
 	const numberToArr = Array.from({ length: star }, (_, index) => index + 1);
 

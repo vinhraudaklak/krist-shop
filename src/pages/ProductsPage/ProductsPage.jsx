@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { getCategories, getProducts } from "../../utils/callApi.js";
 import { PRICE_RANGE } from "../../const/const";
 import { useDebounce } from "use-lodash-debounce";
+import { useLocation } from "react-router-dom";
 
 const ProductsPage = () => {
 	const [loading, setLoading] = useState(false);
@@ -17,6 +18,11 @@ const ProductsPage = () => {
 	const [categories, setCategories] = useState([]);
 	const [products, setProducts] = useState([]);
 
+	// Handle Breadcrumbs.
+	const location = useLocation();
+	const paths = location.pathname.split("/").filter((path) => path); // Lọc bỏ các giá trị rỗng từ đầu
+
+	// Handle filters.
 	const [filters, setFilters] = useState({
 		categories: [],
 		prices: `${PRICE_RANGE.MIN_PRICE}, ${PRICE_RANGE.MAX_PRICE}`,
@@ -24,6 +30,7 @@ const ProductsPage = () => {
 		sizes: [],
 	});
 	const [pagination, setPagination] = useState({
+		totalProducts: 0,
 		totalPage: 0,
 		currentPage: 1,
 		perPage: 12,
@@ -54,11 +61,12 @@ const ProductsPage = () => {
 				pagination.perPage
 			);
 
-			const { products, total_pages, current_page } = res;
+			const { products, total_pages, current_page, total } = res;
 
 			setProducts(products);
 			setPagination((prev) => ({
 				...prev,
+				totalProducts: total,
 				totalPage: total_pages,
 				currentPage: current_page,
 			}));
@@ -83,7 +91,7 @@ const ProductsPage = () => {
 
 	return (
 		<Layout>
-			<Breadcrumbs />
+			<Breadcrumbs paths={paths} />
 			<div className={`${styles.productPage} container`}>
 				<div className={styles.boxFilters}>
 					<Filters
@@ -97,10 +105,14 @@ const ProductsPage = () => {
 				<div className={styles.boxProducts}>
 					{/* ProductsTop */}
 					<div className={styles.boxProductsTop}>
-						<h2 className={styles.topTitle}>Casual</h2>
+						<h2 className={styles.topTitle}>
+							{paths[paths.length - 1]}
+						</h2>
+
 						<div className={styles.topSort}>
 							<p className={styles.topSortLeft}>
-								Showing 1-10 of 100 Products
+								Showing 1-{pagination.perPage} of{" "}
+								{pagination.totalProducts} Products
 							</p>
 							<div className={styles.topSortRight}>
 								<span>Sort by:</span>
@@ -126,6 +138,7 @@ const ProductsPage = () => {
 					{/* Product Bottom */}
 					<div className={styles.boxProductsBottom}>
 						<Separate />
+
 						<div className={styles.wrapPagination}>
 							<button
 								className={styles.paginationArrow}
@@ -140,7 +153,7 @@ const ProductsPage = () => {
 									className={styles.iconArrow}
 									icon={faArrowLeft}
 								/>
-								<p>Previous</p>
+								<span>Previous</span>
 							</button>
 
 							<div className={styles.wrapPageNumbers}>
@@ -148,7 +161,7 @@ const ProductsPage = () => {
 									{ length: pagination.totalPage },
 									(_, index) => (
 										<button
-											className={`${styles.boxNumber} ${styles.backgroundNumber} ${pagination.currentPage === index + 1 ? styles.active : ""}`}
+											className={`${styles.boxNumber}  ${pagination.currentPage === index + 1 ? styles.active : ""}`}
 											key={index + 1}
 											onClick={() =>
 												handlePageChange(index + 1)
