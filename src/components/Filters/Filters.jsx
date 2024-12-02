@@ -1,27 +1,31 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import SeparateMargin from "../SeparateMargin/SeparateMargin";
 import styles from "./Filters.module.scss";
 import { images } from "../../assets/images";
 import InputDoubleRange from "../InputDoubleRange/InputDoubleRange";
 import { LIST_COLORS, LIST_SIZES } from "../../const/const";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp, faFilter } from "@fortawesome/free-solid-svg-icons";
 
+// eslint-disable-next-line react/prop-types
 const Filters = ({ filters, setFilters, categories }) => {
+	const [ showFilterBrands, setShowFilterBrands ] = useState(true)
+
 	// Handle change filter options
-	
 	const toggleFilter = useCallback((filterName, option) => {
 		setFilters((prev) => {
-			if (filterName !== 'prices') {
+			if (filterName !== "prices") {
 				return {
 					...prev,
 					[filterName]: prev[filterName].includes(option) // check xem category đã tồn tại trong filters chưa
 						? prev[filterName].filter((item) => item !== option) // nếu tồn tại thì lặp qua mảng filter.categories và loại bỏ category đã tồn tại trước đó
 						: [...prev[filterName], option], // nếu không tồn tại thì lấy lại categories đã thêm trước đó và thêm mới category hiện tại vào filters
-				}
+				};
 			} else {
-				return { 
+				return {
 					...prev,
 					[filterName]: option,
-				}
+				};
 			}
 		});
 	}, []);
@@ -30,38 +34,54 @@ const Filters = ({ filters, setFilters, categories }) => {
 		<div className={styles.wrapFilters}>
 			<div className={styles.boxTitle}>
 				<h3 className={styles.titleFilter}>Filters</h3>
+				<div className={styles.iconFilter}>
+					<FontAwesomeIcon icon={faFilter} />
+				</div>
 			</div>
 
 			<SeparateMargin />
 			{/* filersCategory */}
-			<ul className={styles.boxFilterCategory}>
-				{categories.map((category) => (
-					<li
-						onClick={() => toggleFilter("categories", category)}
-						key={category.slug}
-						style={{
-							cursor: "pointer",
-							fontWeight: filters.categories.includes(category)
-								? "bold"
-								: "normal",
-							color: filters.categories.includes(category)
-								? "red"
-								: "inherit",
-						}}
+			<div className={styles.containerFilterBrands}>
+				<div className={styles.wrapBradsTop}>
+					<h3 className={styles.titleFilterBrands}>Fashion Brand</h3>
+					
+					<div className={styles.iconArrow}
+						onClick={() => setShowFilterBrands(!showFilterBrands)}
 					>
-						{category.name}
-					</li>
-				))}
-			</ul>
+							{ showFilterBrands ? 	
+								<FontAwesomeIcon icon={faChevronUp} /> :
+								<FontAwesomeIcon icon={faChevronDown} /> 
+							}
+					</div>
+				</div>
+
+				{ showFilterBrands && (<ul className={styles.boxFilterCategory}>
+					{categories.map((category) => (
+						<li
+							onClick={() => toggleFilter("categories", category)}
+							key={category.slug}
+							style={{
+								cursor: "pointer",
+							}}
+							className={`${styles.category} ${
+								filters.categories.includes(category)
+									? styles.catActive
+									: ""
+							}`}
+							
+						>
+							{category.name}
+						</li>
+					))}
+				</ul>)}
+			</div>
 
 			<SeparateMargin />
 			{/* filterPrices */}
 			<div className={styles.boxTitle}>
 				<h3 className={styles.titleFilter}>Price</h3>
 			</div>
-			{/* <InputDoubleRange
-				toggleFilter={toggleFilter}
-			/> */}
+			<InputDoubleRange filters={filters} toggleFilter={toggleFilter} />
 
 			<SeparateMargin />
 			{/* filter color */}
@@ -111,9 +131,8 @@ const Filters = ({ filters, setFilters, categories }) => {
 				))}
 			</div>
 
-			<SeparateMargin />
 			{/* Btn apply Filter */}
-			<button className={styles.btnApplyFilter}>Apply Filter</button>
+			{/* <button className={styles.btnApplyFilter}>Apply Filter</button> */}
 		</div>
 	);
 };

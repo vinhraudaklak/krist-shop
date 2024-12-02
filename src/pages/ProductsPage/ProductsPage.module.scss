@@ -55,6 +55,7 @@
 
 		.wrapBoxProductsCard {
 			flex: 1;
+
 			.boxProductsCard {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
@@ -81,7 +82,11 @@
 					border: 1px solid rgba(0, 0, 0, 0.1);
 					cursor: pointer;
 
-					p {
+					&:hover {
+						opacity: 0.8;
+					}
+
+					span {
 						font-size: 14px;
 						font-weight: 500;
 					}
@@ -93,6 +98,7 @@
 
 				.wrapPageNumbers {
 					display: flex;
+					gap: 2px;
 
 					.boxNumber {
 						display: flex;
@@ -100,18 +106,24 @@
 						justify-content: center;
 						width: 40px;
 						height: 40px;
-						border-radius: 8px;
 						font-size: 14px;
 						font-weight: 500;
-						cursor: pointer;
+						border-radius: 8px;
+						color: rgba(0, 0, 0, 0.5);
+						background-color: transparent;
+						border: none;
+
+						&:hover {
+							cursor: pointer;
+							background-color: rgba(0, 0, 0, 0.06);
+							font-size: 12px;
+							color: rgba(0, 0, 0, 1);
+						}
 					}
 
 					.active {
-						background-color: red !important;
-					}
-
-					.backgroundNumber {
-						background: rgba(0, 0, 0, 0.06);
+						background-color: rgba(0, 0, 0, 0.06);
+						color: rgba(0, 0, 0, 1);
 					}
 				}
 			}
