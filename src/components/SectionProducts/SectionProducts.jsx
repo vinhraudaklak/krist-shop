@@ -2,6 +2,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import styles from "./SectionProducts.module.scss";
 
 
+// eslint-disable-next-line react/prop-types
 const SectionProducts = ({ title, products }) => {
 	
 	return (

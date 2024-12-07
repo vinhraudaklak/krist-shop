@@ -1,6 +1,16 @@
 import { config } from "../config/config";
 
-// Get all categorys of API.
+// Get ID product of API.
+export const getProductId = async (id) => {
+	const res = await fetch(
+		`${config.baseURL}/wp-json/letruongphat/v1/product/?id=${id}`
+	);
+
+	if (!res.ok) throw new Error("failed to fetch productId");
+	return await res.json();
+};
+
+// Get all category of API.
 export const getCategories = async () => {
 	const res = await fetch(
 		`${config.baseURL}/wp-json/letruongphat/v1/categories`
@@ -10,6 +20,7 @@ export const getCategories = async () => {
 	return await res.json();
 };
 
+// Get products and filters.
 export const getProducts = async (filters, currentPage = 1, perPage = 12) => {
 	// ...rest data of filters.
 	const { categories, prices, colors, sizes } = filters;

@@ -1,151 +1,215 @@
-import Layout from "../../components/Layout/Layout";
-import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import { images } from "../../assets/images";
-import styles from "./DetailPage.module.scss";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+
+// import SectionProducts from "../../components/SectionProducts/SectionProducts";
 import RatingStar from "../../components/RatingStar/RatingStar";
 import SeparateMargin from "../../components/SeparateMargin/SeparateMargin";
-import { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faCircleCheck,
-	faStar,
-	faStarHalf,
-} from "@fortawesome/free-solid-svg-icons";
 import TruncateTextComponent from "../../components/TruncateTextComponent/TruncateTextComponent";
+import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import Layout from "../../components/Layout/Layout";
+import styles from "./DetailPage.module.scss";
+import { images } from "../../assets/images";
+import { config } from "../../config/config";
+import { getProductId } from "../../utils/callApi";
+import SectionProducts from '../../components/SectionProducts/SectionProducts'
 
-const product = {
-	id: 1,
-	image: images.product1,
-	title: "Vertical Striped Shirt",
-	price: "$232",
-	priceDiscount: "$212",
-	discount: "20%",
-	star: 3.5,
-	ratingTotal: "5.0",
-	description:
-		"This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-};
-
-const informationComments = [
+const productAlsoLike = [
 	{
 		id: 1,
-		name: "Sarah M.",
-		comment:
-			'"I"m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought has quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought has quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought hasexceeded my expectations.”',
-		star: 5,
+		thumb: images.product1,
+		name: "Vertical Striped Shirt",
+		regular_price: "232",
+		price: "212",
+		sale_price: "212",
+		discount: "20%",
+		star: 3.5,
 	},
 	{
 		id: 2,
-		name: "Alex K.",
-		comment:
-			'"As a UI/UX enthusiast, I value simplicity and functionality. This t-shirt not only represents those principles but also feels great to wear. It"s evident that the designer poured their creativity into making this t-shirt stand out."',
+		thumb: images.product1,
+		name: "Vertical Striped Shirt",
+		regular_price: "232",
+		price: "212",
+		sale_price: "212",
+		discount: "20%",
 		star: 4.5,
 	},
 	{
 		id: 3,
-		name: "James L.",
-		comment:
-			"As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
+		thumb: images.product1,
+		name: "Vertical Striped Shirt",
+		regular_price: "232",
+		price: "212",
+		sale_price: "212",
+		discount: "20%",
 		star: 4,
 	},
 	{
 		id: 4,
-		name: "VinhNg.",
-		comment:
-			'"I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It"s become my favorite go-to shirt."',
+		thumb: images.product1,
+		name: "Vertical Striped Shirt",
+		regular_price: "232",
+		price: "212",
+		sale_price: "212",
+		discount: "20%",
 		star: 5,
 	},
-	{
-		id: 5,
-		name: "Sarah M.",
-		comment:
-			'"I"m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought has exceeded my expectations.”',
-		star: 5,
-	},
-	{
-		id: 6,
-		name: "Alex K.",
-		comment:
-			'"Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.”',
-		star: 4.5,
-	},
-	{
-		id: 7,
-		name: "James L.",
-		comment:
-			"As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
-		star: 8,
-	},
-	{
-		id: 9,
-		name: "VinhNg.",
-		comment:
-			'"I"m blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I"ve bought has exceeded my expectations.”',
-		star: 5,
-	},
+	
 ];
 const DetailPage = () => {
+	const [product, setProduct] = useState({});
+	const [informationRatings, setInformationRatings] = useState([]);
+
+	// const [category, setCategory] = useState("");
+	// const [ getCategory, setGetCategory] = useState([])
+
 	const [showTopic, setShowTopic] = useState("ratings");
-	const commentRefs = useRef([]);
 
+	const listImages = product?.images || [];
+	const [indexImg, setIndexImg] = useState(0);
+
+	const listColor = product?.attributes?.pa_color || [];
+	const [checkedColor, setCheckedColor] = useState(0);
+
+	const listSize = product?.attributes?.pa_size || [];
+	const [checkedSize, setCheckedSize] = useState(0);
+
+	// Call API productId.
+	const { id } = useParams();
 	useEffect(() => {
-		informationComments.forEach((_, index) => {
-			const element = commentRefs.current[index];
-
-			if (element && element.scrollHeight > element.clientHeight) {
-				const btnViewMore =
-					element.parentNode.querySelector(".viewMore");
-				btnViewMore.style.display = "block";
+		(async () => {
+			try {
+				const res = await getProductId(id);
+				setProduct(res);
+				// setCategory(res.categories[0]);
+			} catch (err) {
+				console.log(err);
 			}
-		});
+		})();
 	}, []);
+
+	// Call API rating product.
+	useEffect(() => {
+		(async () => {
+			try {
+				const res = await fetch(
+					`${config.baseURL}/wp-json/letruongphat/v1/ratings/?id=${id}`
+				);
+				setInformationRatings(await res.json());
+				if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
+			} catch (error) {
+				console.error("Fetch ratings error:", error);
+			}
+		})();
+	}, []);
+
+	// Call API brand category.
+	// useEffect(() => {
+	// 	(async () => {
+	// 		try {
+	// 			const res = await fetch(
+	// 				`${config.baseURL}/wp-json/letruongphat/v1/get-products/?category[]=${category}`
+	// 			);
+	// 			setGetCategory(await res.json());
+	// 			if (!res.ok) throw new Error(`Failed to fetch category: ${res.status}`);
+	// 		} catch (error) {
+	// 			console.error("Fetch ratings error:", error);
+	// 		}
+	// 	})();
+	// }, []);
 
 	return (
 		<Layout>
-			<Breadcrumbs />
+			<Breadcrumbs nameProduct={product.name} />
+
 			<div className="container">
 				{/* Product detail */}
 				<div className={styles.wrapDetail}>
 					{/* ContainerImages */}
 					<div className={styles.wrapImg}>
 						<div className={styles.wrapImagesDetail}>
-							<div>
-								<img src={product.image} />
-							</div>
-							<div>
-								<img src={product.image} />
-							</div>
-							<div>
-								<img src={product.image} />
-							</div>
+							{listImages.map((image, index) => (
+								<div
+									key={index}
+									onClick={() => setIndexImg(index)}
+								>
+									<img
+										style={
+											indexImg === index
+												? {
+														border: "2px solid rgba(0, 0, 0, 1)",
+													}
+												: {}
+										}
+										src={image}
+									/>
+								</div>
+							))}
 						</div>
 
 						<div className={styles.impImageMain}>
-							<img src={product.image} />
+							<img src={listImages[indexImg]} />
 						</div>
 					</div>
+
 					{/* Container Description */}
 					<div className={styles.wrapDesc}>
 						{/* Title */}
-						<h2 className={styles.productTitle}>{product.title}</h2>
+						<h2 className={styles.productTitle}>{product.name}</h2>
+
 						{/* Rating Star */}
-						<RatingStar star={product.star} size="16" />
-						{/* Price Profuct */}
+						<div className={styles.wrapRatings}>
+							<RatingStar star={product.star} size="16" />
+						</div>
+
+						{/* Price Product */}
 						<div className={styles.productWrapPrice}>
-							<div className={styles.productPriceDiscount}>
-								{product.priceDiscount}
+							<div className={styles.productPrice}>
+								${product.price}
+							</div>
+
+							{product?.regular_price && (
+								<div
+									className={styles.productPriceDiscount}
+									style={{
+										color: "rgba(0, 0, 0, 0.4)",
+										textDecoration: "line-through",
+									}}
+								>
+									${product.regular_price}
+								</div>
+							)}
+
+							{product?.regular_price && (
+								<div className={styles.productPercentDiscount}>
+									-{" "}
+									{100 -
+										Math.round(
+											(product.sale_price /
+												product.regular_price) *
+												100
+										)}
+									%
+								</div>
+							)}
+							{/* <div className={styles.productPriceDiscount}>
+								{product.price}
 							</div>
 							<div className={styles.productPrice}>
 								{product.price}
 							</div>
 							<div className={styles.productPercentDiscount}>
 								-20%
-							</div>
+							</div> */}
 						</div>
+
 						{/* Description */}
 						<p className={styles.productDesc}>
-							{product.description}
+							{product.short_description}
 						</p>
+
 						<SeparateMargin />
 						{/*  Select Color */}
 						<div className={styles.productSelectColor}>
@@ -153,28 +217,23 @@ const DetailPage = () => {
 								Select Colors
 							</p>
 							<div className={styles.wrapColor}>
-								<div
-									className={styles.colorItem}
-									style={{
-										backgroundColor: "rgba(79, 70, 49, 1)",
-									}}
-								>
-									<img src={images.iconCheck} />
-								</div>
-								<div
-									className={styles.colorItem}
-									style={{
-										backgroundColor: "rgba(49, 79, 74, 1)",
-									}}
-								></div>
-								<div
-									className={styles.colorItem}
-									style={{
-										backgroundColor: "rgba(49, 52, 79, 1)",
-									}}
-								></div>
+								{listColor.map((color, index) => (
+									<div
+										key={index}
+										className={styles.colorItem}
+										style={{
+											backgroundColor: `${color}`,
+										}}
+										onClick={() => setCheckedColor(index)}
+									>
+										{checkedColor === index && (
+											<img src={images.iconCheck} />
+										)}
+									</div>
+								))}
 							</div>
 						</div>
+
 						<SeparateMargin />
 						{/* Select Size  */}
 						<div className={styles.productSelectSize}>
@@ -182,16 +241,18 @@ const DetailPage = () => {
 								Choose Size
 							</p>
 							<div className={styles.wrapSize}>
-								<div
-									className={`${styles.sizeItem} ${styles.active}`}
-								>
-									Small
-								</div>
-								<div className={styles.sizeItem}>Medium</div>
-								<div className={styles.sizeItem}>Large</div>
-								<div className={styles.sizeItem}>X-Large</div>
+								{listSize.map((size, index) => (
+									<div
+										key={index}
+										className={`${styles.sizeItem} ${checkedSize === index ? styles.active : ""}`}
+										onClick={() => setCheckedSize(index)}
+									>
+										{size}
+									</div>
+								))}
 							</div>
 						</div>
+
 						<SeparateMargin />
 						{/* Add Cart  */}
 						<div className={styles.productWrapAdd}>
@@ -235,78 +296,61 @@ const DetailPage = () => {
 							<div className={styles.wrapTopRatings}>
 								<div className={styles.allReviews}>
 									All Reviews
-									<span>({informationComments.length})</span>
+									<span>
+										(
+										{informationRatings === "number"
+											? informationRatings.length
+											: 0}
+										)
+									</span>
 								</div>
 
 								<button className={styles.btnWriteRating}>
 									write a Review
 								</button>
 							</div>
+
 							{/* BottomRatings */}
 							<div className={styles.wrapContainerRating}>
-								{informationComments.map(
-									(informationComment) => {
-										// check star int of float
-										const isInt =
-											informationComment.star &&
-											(informationComment.star / 2) %
-												0.5 ===
-												0;
+								{Array.isArray(informationRatings) &&
+									informationRatings.map(
+										(informationRating) => {
+											return (
+												<div
+													key={informationRating.id}
+													className={
+														styles.wrapComment
+													}
+												>
+													<RatingStar
+														star={
+															informationRating.rating
+														}
+													/>
 
-										// Convert star number to array
-										// 5 => [0, 1 , 2, 3,]
-										const numberToArr = Array.from(
-											{ length: informationComment.star },
-											(_, index) => index + 1
-										);
-
-										return (
-											<div
-												key={informationComment.id}
-												className={styles.wrapComment}
-											>
-												<div>
 													<div
 														className={
-															styles.starRating
+															styles.userName
 														}
-													>
-														{numberToArr.map(
-															(_, index) => {
-																return (
-																	<FontAwesomeIcon
-																		key={index}
-																		icon={
-																			faStar
-																		}
-																	/>
-																);
-															}
-														)}
-	
-														{!isInt && (
-															<FontAwesomeIcon
-																icon={faStarHalf}
-															/>
-														)}
-													</div>
-													<div
-														className={styles.userName}
 													>
 														<span>
 															{
-																informationComment.name
+																informationRating.author
 															}
+															.
 														</span>
 														<FontAwesomeIcon
-															className={styles.icon}
+															className={
+																styles.icon
+															}
 															icon={faCircleCheck}
 														/>
 													</div>
+
 													<div>
 														<TruncateTextComponent
 															text={
-																informationComment.comment
+																informationRating.content
 															}
 															maxLines={3}
 															classNameText={
@@ -317,27 +361,48 @@ const DetailPage = () => {
 															}
 														/>
 													</div>
-												</div>
 
-												<span
-													className={
-														styles.timePosted
-													}
-												>
-													Posted on August 18, 2023
-												</span>
-											</div>
-										);
-									}
-								)}
+													<div
+														className={
+															styles.timePosted
+														}
+													>
+														<span>
+															{
+																informationRating.date
+															}
+														</span>
+													</div>
+												</div>
+											);
+										}
+									)}
+							</div>
+
+							<div className={styles.wrapBtnLoadViews}>
+								<button className={styles.btnLoadViews}>
+									Load More Reviews
+								</button>
 							</div>
 						</div>
 					) : (
 						<div className={styles.wrapDetailsProduct}>
-							<h1 className={styles.titleName}>Vertical Striped Shirt</h1>
+							<h3 className={styles.titleNameProduct}>
+								{product.name}
+							</h3>
+							<span className={styles.descriptionProduct}>
+								<p>Detailes:</p>
+								{product.description}
+							</span>
+							<SeparateMargin />
 						</div>
 					)}
 				</div>
+
+				<SectionProducts 
+					products={productAlsoLike}
+					title={"You might also like"}
+				/>
 			</div>
 		</Layout>
 	);

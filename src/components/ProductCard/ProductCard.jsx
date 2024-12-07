@@ -33,7 +33,13 @@ const ProductCard = ({ product }) => {
 
 						{product?.regular_price && (
 							<div className={styles.productPercentDiscount}>
-								{100 - Math.round((product.sale_price / product.regular_price) * 100)}%
+								{100 -
+									Math.round(
+										(product.sale_price /
+											product.regular_price) *
+											100
+									)}
+								%
 							</div>
 						)}
 					</div>

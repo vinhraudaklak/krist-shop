@@ -10,13 +10,14 @@ import { useEffect, useState } from "react";
 import { getCategories, getProducts } from "../../utils/callApi.js";
 import { PRICE_RANGE } from "../../const/const";
 import { useDebounce } from "use-lodash-debounce";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const ProductsPage = () => {
 	const [loading, setLoading] = useState(false);
 
 	const [categories, setCategories] = useState([]);
 	const [products, setProducts] = useState([]);
+	
 
 	// Handle Breadcrumbs.
 	const location = useLocation();
@@ -33,7 +34,7 @@ const ProductsPage = () => {
 		totalProducts: 0,
 		totalPage: 0,
 		currentPage: 1,
-		perPage: 12,
+		perPage: 9,
 	});
 
 	const debouncedValue = useDebounce(filters, 100);
@@ -91,7 +92,7 @@ const ProductsPage = () => {
 
 	return (
 		<Layout>
-			<Breadcrumbs paths={paths} />
+			<Breadcrumbs />
 			<div className={`${styles.productPage} container`}>
 				<div className={styles.boxFilters}>
 					<Filters
@@ -127,10 +128,20 @@ const ProductsPage = () => {
 					<div className={styles.wrapBoxProductsCard}>
 						<div className={styles.boxProductsCard}>
 							{products.map((product) => (
-								<ProductCard
+								<Link
+									to={`/Products/${product.id}`}
 									key={product.id}
-									product={product}
-								/>
+									style={{
+										textDecoration: "none",
+										color: "inherit",
+										display: "flex",
+									}}
+								>
+									<ProductCard
+										key={product.id}
+										product={product}
+									/>
+								</Link>
 							))}
 						</div>
 					</div>
