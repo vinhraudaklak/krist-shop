@@ -13,57 +13,58 @@ import styles from "./DetailPage.module.scss";
 import { images } from "../../assets/images";
 import { config } from "../../config/config";
 import { getProductId } from "../../utils/callApi";
-import SectionProducts from '../../components/SectionProducts/SectionProducts'
+import SectionProducts from "../../components/SectionProducts/SectionProducts";
 
-const productAlsoLike = [
-	{
-		id: 1,
-		thumb: images.product1,
-		name: "Vertical Striped Shirt",
-		regular_price: "232",
-		price: "212",
-		sale_price: "212",
-		discount: "20%",
-		star: 3.5,
-	},
-	{
-		id: 2,
-		thumb: images.product1,
-		name: "Vertical Striped Shirt",
-		regular_price: "232",
-		price: "212",
-		sale_price: "212",
-		discount: "20%",
-		star: 4.5,
-	},
-	{
-		id: 3,
-		thumb: images.product1,
-		name: "Vertical Striped Shirt",
-		regular_price: "232",
-		price: "212",
-		sale_price: "212",
-		discount: "20%",
-		star: 4,
-	},
-	{
-		id: 4,
-		thumb: images.product1,
-		name: "Vertical Striped Shirt",
-		regular_price: "232",
-		price: "212",
-		sale_price: "212",
-		discount: "20%",
-		star: 5,
-	},
-	
-];
+// const productAlsoLike = [
+// 	{
+// 		id: 1,
+// 		thumb: images.product1,
+// 		name: "Vertical Striped Shirt",
+// 		regular_price: "232",
+// 		price: "212",
+// 		sale_price: "212",
+// 		discount: "20%",
+// 		star: 3.5,
+// 	},
+// 	{
+// 		id: 2,
+// 		thumb: images.product1,
+// 		name: "Vertical Striped Shirt",
+// 		regular_price: "232",
+// 		price: "212",
+// 		sale_price: "212",
+// 		discount: "20%",
+// 		star: 4.5,
+// 	},
+// 	{
+// 		id: 3,
+// 		thumb: images.product1,
+// 		name: "Vertical Striped Shirt",
+// 		regular_price: "232",
+// 		price: "212",
+// 		sale_price: "212",
+// 		discount: "20%",
+// 		star: 4,
+// 	},
+// 	{
+// 		id: 4,
+// 		thumb: images.product1,
+// 		name: "Vertical Striped Shirt",
+// 		regular_price: "232",
+// 		price: "212",
+// 		sale_price: "212",
+// 		discount: "20%",
+// 		star: 5,
+// 	},
+// ];
 const DetailPage = () => {
 	const [product, setProduct] = useState({});
 	const [informationRatings, setInformationRatings] = useState([]);
 
-	// const [category, setCategory] = useState("");
-	// const [ getCategory, setGetCategory] = useState([])
+	const [categories, setCategories] = useState([]);
+	console.log(categories);
+	
+	const [relatedProducts, getRelatedProducts] = useState([]);
 
 	const [showTopic, setShowTopic] = useState("ratings");
 
@@ -83,7 +84,7 @@ const DetailPage = () => {
 			try {
 				const res = await getProductId(id);
 				setProduct(res);
-				// setCategory(res.categories[0]);
+				setCategories(res.categories);
 			} catch (err) {
 				console.log(err);
 			}
@@ -106,19 +107,28 @@ const DetailPage = () => {
 	}, []);
 
 	// Call API brand category.
-	// useEffect(() => {
-	// 	(async () => {
-	// 		try {
-	// 			const res = await fetch(
-	// 				`${config.baseURL}/wp-json/letruongphat/v1/get-products/?category[]=${category}`
-	// 			);
-	// 			setGetCategory(await res.json());
-	// 			if (!res.ok) throw new Error(`Failed to fetch category: ${res.status}`);
-	// 		} catch (error) {
-	// 			console.error("Fetch ratings error:", error);
-	// 		}
-	// 	})();
-	// }, []);
+	useEffect(() => {
+		(async () => {
+			if (categories.length > 0) {
+				try {
+					const categoriesString = categories
+						.map((itemCate) => `category[]=${itemCate.slug}`)
+						.join("&");
+
+					const res = await fetch(
+						`${config.baseURL}/wp-json/letruongphat/v1/get-products/?${categoriesString}`
+					);
+					getRelatedProducts((await res.json()).products);
+					if (!res.ok)
+						throw new Error(
+							`Failed to fetch category: ${res.status}`
+						);
+				} catch (error) {
+					console.error("Fetch ratings error:", error);
+				}
+			}
+		})();
+	}, [categories]);
 
 	return (
 		<Layout>
@@ -399,8 +409,8 @@ const DetailPage = () => {
 					)}
 				</div>
 
-				<SectionProducts 
-					products={productAlsoLike}
+				<SectionProducts
+					products={relatedProducts}
 					title={"You might also like"}
 				/>
 			</div>

@@ -1,0 +1,221 @@
+.wrapper {
+	.title {
+		font-size: 40px;
+		font-weight: 700;
+		font-family: $integralCF;
+		padding-bottom: 24px;
+	}
+
+	.wrapCart {
+		display: grid;
+		grid-template-columns: repeat(12, 1fr);
+		gap: 20px;
+		padding-bottom: 80px;
+
+		.wrapCartProducts {
+			grid-area: 1 / 1 / 2 / 8;
+
+			.containerCartProducts {
+				padding: 20px;
+				border-radius: 20px;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+			}
+
+			.wrapCartItem {
+				display: flex;
+				gap: 16px;
+
+				.imageItem {
+					height: 125px;
+					width: 125px;
+				}
+
+				.wrapInfoItem {
+					flex: 1;
+					display: flex;
+					justify-content: space-between;
+
+					.wrapInfo {
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+
+						.infoContent {
+							h3 {
+								font-size: 20px;
+								font-weight: 700;
+							}
+
+							p {
+								padding: 2px 0;
+								font-size: 14px;
+								font-weight: 400;
+
+								span {
+									color: rgba(0, 0, 0, 0.6);
+								}
+							}
+						}
+
+						.priceItem {
+							font-size: 24px;
+							font-weight: 700;
+						}
+					}
+
+					.wrapFeature {
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+						align-items: end;
+
+						.clearIcon {
+							font-size: 18px;
+							color: red;
+
+							&:hover {
+								opacity: 0.6;
+							}
+						}
+
+						.wrapBtn {
+							padding: 12px 20px;
+							border-radius: 62px;
+							background: #f0f0f0;
+							display: flex;
+							align-items: center;
+
+							button {
+								background-color: transparent;
+								border: none;
+								cursor: pointer;
+
+								&:hover {
+									opacity: 0.6;
+								}
+							}
+							span {
+								margin: 0 20px;
+								font-size: 14px;
+								font-weight: 500;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.wrapOderSummary {
+			grid-area: 1 / 8 / 2 / 13;
+
+			.containerOderSummary {
+				padding: 20px 24px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				gap: 24px;
+				border-radius: 20px;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+			}
+
+			.titleOder {
+				font-size: 24px;
+				font-weight: 700;
+			}
+
+			.wrapCalculate {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				gap: 20px;
+
+				.calculateItem {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+
+					p {
+						font-size: 20px;
+						font-weight: 400;
+						color: rgba(0, 0, 0, 0.6);
+					}
+
+					span {
+						font-size: 20px;
+						font-weight: 700;
+					}
+
+					.DiscountPrice {
+						color: red;
+					}
+				}
+			}
+
+			.wrapAddCode {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 12px;
+
+				.wrapInput {
+					flex: 1;
+					display: flex;
+					align-items: center;
+					gap: 12px;
+					padding: 0 16px;
+					border-radius: 62px;
+					background: #f0f0f0;
+
+					.iconWrite {
+						font-size: 18px;
+						color: rgba(0, 0, 0, 0.6);
+					}
+
+					input {
+						flex: 1;
+						border: none;
+						outline: none;
+						background-color: transparent;
+						padding: 12px 0px;
+						font-size: 16px;
+						font-weight: 400;
+						color: rgba(0, 0, 0, 0.4);
+					}
+				}
+
+				button {
+					padding: 12px 32px;
+					font-size: 16px;
+					font-weight: 500;
+					color: white;
+					border-radius: 62px;
+					background: #000;
+					border: none;
+				}
+			}
+
+			.checkoutBtn {
+				border: none;
+				padding: 16px 0px;
+				margin-bottom: 12px;
+				border-radius: 62px;
+				background: #000;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 12px;
+
+				span {
+					color: white;
+					font-size: 16px;
+					font-weight: 500;
+				}
+
+				.rightIcon {
+					color: white;
+					font-size: 18px;
+				}
+			}
+		}
+	}
+}
