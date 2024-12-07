@@ -6,7 +6,6 @@ const TruncateTextComponent = ({ text, maxLines, classNameText, classNameBtnText
 		text,
 		maxLines
 	);
-	console.log(showMore);
 	
   
 	return (
